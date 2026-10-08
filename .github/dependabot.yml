@@ -1,54 +1,53 @@
 ---
 version: 2
 updates:
-- package-ecosystem: maven
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "03:00"
-  open-pull-requests-limit: 10
-  labels:
-  - dependencies
-  - govuk-pay
-  - java
-  ignore:
-  - dependency-name: "org.eclipse.persistence:org.eclipse.persistence.jpa"
+  - package-ecosystem: maven
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "03:00"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - govuk-pay
+      - java
+    ignore:
+      - dependency-name: "org.eclipse.persistence:org.eclipse.persistence.jpa"
         # org.eclipse.persistence.jpa 5 is incompatible with Guice 7, needs a lot of work on our end
-    versions:
-    - ">= 5"
-  cooldown:
-    exclude:
-    - "uk.gov.service.payments:*"
-- package-ecosystem: docker
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "03:00"
-  ignore:
-  - dependency-name: "eclipse-temurin"
-    versions:
-    - "> 25"
-  open-pull-requests-limit: 10
-  labels:
-  - dependencies
-  - govuk-pay
-  - docker
-- package-ecosystem: github-actions
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "03:00"
-  open-pull-requests-limit: 0
-  labels:
-  - dependencies
-  - govuk-pay
-  - github_actions
-- package-ecosystem: github-actions
-  directory: /.github/workflows
-  schedule:
-    interval: daily
-    time: 03:00
-  open-pull-requests-limit: 3
-  cooldown: 3
-  allow:
-  - dependency-name: govuk-pay/pay-ci/*
+        versions:
+          - ">= 5"
+    cooldown:
+      exclude:
+        - "uk.gov.service.payments:*"
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "03:00"
+    ignore:
+      - dependency-name: "eclipse-temurin"
+        versions:
+          - "> 25"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - govuk-pay
+      - docker
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "03:00"
+    open-pull-requests-limit: 0
+    labels:
+      - dependencies
+      - govuk-pay
+      - github_actions
+  - package-ecosystem: github-actions
+    directory: /.github/workflows
+    schedule:
+      interval: daily
+      time: "03:00"
+    open-pull-requests-limit: 3
+    allow:
+      - dependency-name: govuk-pay/pay-ci/*
